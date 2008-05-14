@@ -76,22 +76,22 @@ class VP_JS implements VP_Module
 	/**
 	* The default HTTP path.
 	*/
-	const HTTPPATH = "/scripts/";
+	public static $HTTPPath = "/scripts/";
 	
 	/**
 	* The HTTP path to prepend to the file name after the file has been moved.
 	*/
-	const HTTPPATH_CACHE = "/Vanishing%20Point/scripts/VP_Cache/";
+	public static $HTTPPath_cache = "/Vanishing%20Point/scripts/VP_Cache/";
 	
 	/**
 	* The default path to prepend to the file name for writing to it on the server.
 	*/
-	const SERVERPATH = "scripts/";
+	public static $serverPath = "scripts/";
 	
 	/**
 	* The path to prepend to the file name for writing to it on the server if the file has to be moved.
 	*/
-	const SERVERPATH_CACHE = "scripts/VP_Cache/";	
+	public static $serverPath_cache = "scripts/VP_Cache/";	
 	
 	/**
 	* The default extension for files processed by VP_JS.
@@ -171,6 +171,26 @@ class VP_JS implements VP_Module
 		return $this->unaltered;
 	}
 	
+	
+	public function setServerPath($serverPath, $serverPath_cache="")
+	{
+		self::$serverPath = $serverPath;
+		if($serverPath_cache == "")
+			self::$serverPath_cache = $serverPath . "/VP_Cache";
+		else
+			self::$serverPath_cache = $serverPath_cache;
+	}
+	
+	
+	public function setHTTPPath($HTTPPath, $HTTPPath_cache="")
+	{
+		self::$HTTPPath = $HTTPPath;
+		if($HTTPPath_cache == "")
+			self::$HTTPPath_cache = $HTTPPath . "/VP_Cache";
+		else
+			self::$HTTPPath_cache = $HTTPPath_cache;
+	}
+	
 	/**
 	* Returns the <script> include with the correct file name and path after the file is packed/versioned/moved.
 	*/
@@ -245,9 +265,9 @@ class VP_JS implements VP_Module
 		if(count($names) > 0 )
 		{
 			//create the actual path
-			$path = self::SERVERPATH_CACHE .  implode("_",$names) . self::COMBINE_EXTENSION;
+			$path = self::$serverPath_cache .  implode("_",$names) . self::COMBINE_EXTENSION;
 			//create the actual regular expression
-			$regex =  preg_replace("/\./","\.", self::SERVERPATH_CACHE)  .  implode("_",$regexes) . preg_replace("/\./","\.", self::COMBINE_EXTENSION );
+			$regex =  preg_replace("/\./","\.", self::$serverPath_cache)  .  implode("_",$regexes) . preg_replace("/\./","\.", self::COMBINE_EXTENSION );
 			
 			//no need to remake the file
 			if(!file_exists($path))
@@ -284,7 +304,7 @@ class VP_JS implements VP_Module
 				}
 			}			
 			
-			$path = self::HTTPPATH_CACHE .  implode("_",$names) . self::COMBINE_EXTENSION;
+			$path = self::$HTTPPath_cache .  implode("_",$names) . self::COMBINE_EXTENSION;
 			
 			return '<script type="text/javascript" src="'.$path.'"></script>' . "\n";
 		}
@@ -298,11 +318,11 @@ class VP_JS implements VP_Module
 		//create the new filename
 		$newfile =  basename(str_replace('/','-',$this->file), self::BASE_EXTENSION) . self::BASE_EXTENSION;
 		//copy it
-		copy($this->file,  self::SERVERPATH_CACHE . $newfile);
+		copy($this->file,  self::$serverPath_cache . $newfile);
 		//modify our var
-		$this->file = self::SERVERPATH_CACHE . $newfile;
+		$this->file = self::$serverPath_cache . $newfile;
 		//return
-		return self::HTTPPATH_CACHE . $newfile;
+		return self::$HTTPPath_cache. $newfile;
 	}
 	
 	/**
@@ -354,16 +374,16 @@ class VP_JS implements VP_Module
 			$newfile = "";
 			
 			//if it was cached
-			if(preg_match("-".self::SERVERPATH_CACHE."-",$this->file) > 0)
+			if(preg_match("-".self::$serverPath_cache."-",$this->file) > 0)
 			{
 				//build the new filename and path
 				$newfile = self::HTTPPATH_CACHE . preg_replace("-".self::SERVERPATH_CACHE."-","",$this->file);
 			}
 			//if it ws not cached
-			else if(preg_match("-".self::SERVERPATH."-",$this->file) > 0)
+			else if(preg_match("-".self::$serverPath."-",$this->file) > 0)
 			{
 				//build the new filename and path
-				$newfile = self::HTTPPATH . preg_replace("-".self::SERVERPATH."-","",$this->file);
+				$newfile = self::$HTTPPath . preg_replace("-".self::$serverPath."-","",$this->file);
 			}
 			//hmm... neither. we'll skip that
 			else
