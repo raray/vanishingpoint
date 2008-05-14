@@ -3,7 +3,7 @@
 /**
  * Vanishing Point Optimizer Class
  * 
- * Vanishing Point is a toolkit that enables the programmer to implement plugins for 
+ * Vanishing Point is a framework that enables the programmer to implement plugins for 
  * different file types to be optimized. The class's main role in optimization is managing the files and calling the 
  * appropriate render(). Plugins are based upon the VP_Module interface and should 
  * adhere to the standards defined in the VP_Module documentation. 
@@ -69,7 +69,7 @@ class VanishingPoint
 	public function __construct(  )	
 	{
 		//This line of code is not to be removed. 
-		echo "<!-- Optimized by Vanishing Point: http://www.net-perspective.com/downloads/vanishing_point -->\n";
+		//echo "<!-- Optimized by Vanishing Point: http://www.net-perspective.com/downloads/vanishing_point -->\n";
 	}
 	
 	/**
