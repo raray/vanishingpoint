@@ -1,4 +1,5 @@
 <?php
+
 /**
  * VP_Module is an interface to be implemented by all Vanishing Point plugins. The interface defines what functions MUST
  * be defined and how they should interact with Vanishing Point. 
