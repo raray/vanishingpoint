@@ -18,6 +18,10 @@ require_once('class.VanishingPoint.php');
 //include the desired plugin
 require_once('class.VP_JS.php');
 
+
+VP_JS::setServerPath("scripts/","scripts/VP_Cache/");
+VP_JS::setHTTPPath("/Vanishing%20Point/scripts/","/Vanishing%20Point/scripts/VP_Cache/");
+
 //create a Vanishing Point Object
 $vp = new VanishingPoint();
 
