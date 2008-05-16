@@ -150,7 +150,8 @@ class VanishingPoint
 				if(!$this->debug)
 				{
 					reset($this->modules[$key]);
-					$tmp = get_class(current($this->modules[$key]));			
+					$tmp = get_class(current($this->modules[$key]));	
+					
 					$output[$key] = call_user_func_array( array(new $tmp(null,null,null),'combine'), array($this->modules[$key],&$this->rendered) );
 				}
 				foreach($this->modules[$key] as $m)
@@ -178,7 +179,7 @@ class VanishingPoint
 				//if not in debug mode, reset the array, get the first item, find it's class, and call that class's combine function
 				// on all other files in that group
 				reset($this->modules[strtolower($module)]);
-				$tmp = get_class(current($this->modules[strtolower($module)]));		
+				$tmp = get_class(current($this->modules[strtolower($module)]));									
 				$output[strtolower($module)] = call_user_func_array( array(new $tmp(null,null,null),'combine'), array($this->modules[strtolower($module)],&$this->rendered) );
 			}
 			foreach($this->modules[strtolower($module)] as $m)
@@ -203,8 +204,6 @@ class VanishingPoint
 				}
 			}
 		}	
-		//reset the rendered array
-		$this->rendered = array();
 		//return the output
 		return $output;
 	}	
