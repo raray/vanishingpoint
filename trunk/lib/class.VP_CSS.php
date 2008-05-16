@@ -155,6 +155,14 @@ class VP_CSS implements VP_Module
 	{		
 		$this->load();
 		
+		
+		//Here is where I do my minifying since csstidy didn't do everything I wanted
+		//Order is VERY imporant here... don't modify these
+		
+			
+		//remove multi-line 
+		$this->contents = preg_replace("~/\*.*?\*/~","",$this->contents);
+		
 		$regex = "/@import url\(\"(.*?)\"\);/is";
 		$tmp = array();
 		preg_match_all($regex,$this->contents, $tmp);		
@@ -167,6 +175,9 @@ class VP_CSS implements VP_Module
 			else if(file_exists('./'.$tmp[1][$a]))
 				$this->contents = preg_replace('~'.preg_quote($tmp[0][$a]).'~',file_get_contents('./'.$tmp[1][$a]),$this->contents);
 		}
+		
+		//remove multi-line 
+		$this->contents = preg_replace("~/\*.*?\*/~","",$this->contents);
 		preg_match_all($regex,$this->contents, $tmp);		
 		for($a=0; $a<count($tmp[0]); $a++)
 		{
@@ -196,6 +207,7 @@ class VP_CSS implements VP_Module
 		
 		//remove multi-line comments
 		$this->contents = preg_replace("~/\*.*?\*/~","",$this->contents);
+		
 		
 		$this->file = preg_replace("/\.css/",".v".$this->version.self::BASE_EXTENSION,$this->file);
 		
