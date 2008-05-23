@@ -5,7 +5,7 @@
  *
  * @link http://www.net-perspective.com/ Net Perspective Website
  * 
- * @version 1.0.0
+ * @version 0
  * @author Andrew Ellis <aellis@net-perspective.com>
  * @copyright Copyright (c) 2008, Net Perspective, LLC
  * @license http://www.opensource.org/licenses/mit-license.php MIT License 
