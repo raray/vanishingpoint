@@ -1,0 +1,17 @@
+//test
+/*** * Form Styles * ***/
+@import url("styleIE.css");
+
+
+/* ***  Universals   *** */
+html, 
+body {
+	margin: 0;
+	padding: 0;
+} 
+ 
+body {
+	display: block;
+	color: #6C5C4D;
+	font-family: Georgia, serif;
+}

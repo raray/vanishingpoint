@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Vanishing Point" default="dist" basedir=".">
+
+	<fileset dir="./lib" id="codefiles">
+		<include name="**" />
+		<exclude name="**/.svn/**" />
+	</fileset>
+	
+	<target name="test">
+		<phpunit2 haltonfailure="true" haltonerror="true" printsummary="true">
+			<formatter type="plain" todir="./tests/reports" />
+			<batchtest classpath="./lib">
+				<fileset dir="./tests">
+					<include name="*Test.php" />
+				</fileset>
+			</batchtest>
+		</phpunit2>
+	</target>
+	
+	<target name="doc" depends="test">
+		<delete>
+			<fileset dir="docs">
+				<include name="**/**" />
+				<exclude name="**/.svn" />
+			</fileset>
+		</delete>
+		<phpdoc title="Vanishing Point API Documentation" sourcecode="yes" output="HTML:Smarty:PHP" destdir="./docs/" quiet="true" packageoutput="VanishingPoint">
+			<fileset dir="./lib" >
+				<include name="**/*.php" />
+			</fileset>
+			<projdocfileset dir=".">
+				<include name="README" />
+				<include name="INSTALL" />
+				<include name="CHANGELOG" />
+			</projdocfileset>
+		</phpdoc>
+	</target>
+	
+	<target name="dist" depends="doc">
+		<delete>
+			<fileset dir="builds/">
+				<include name="vanishingpoint-b*.tar.gz" />
+			</fileset>
+		</delete>
+		<tar destfile="./builds/vanishingpoint-b${xinc.build.number}.tar.gz" compression="gzip">
+			<fileset dir=".">
+				<include name="**/**" />
+				<exclude name="builds/**" />
+				<exclude name="**/.svn" />
+				<exclude name=".project" />
+				<exclude name=".settings/**" />
+			</fileset>
+		</tar>
+		<tar destfile="./builds/vanishingpoint-doc-b${xinc.build.number}.tar.gz" compression="gzip">
+			<fileset dir="./docs">
+				<include name="**/**" />
+				<exclude name="**/.svn/**" />
+			</fileset>
+		</tar>
+	</target>
+	
+</project>

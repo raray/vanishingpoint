@@ -1,0 +1,1 @@
+alert("init");alert("menu");
