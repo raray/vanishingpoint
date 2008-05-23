@@ -51,6 +51,12 @@
 				<exclude name=".settings/**" />
 			</fileset>
 		</tar>
+		<tar destfile="./builds/vanishingpoint-doc-b${xinc.build.number}.tar.gz" compression="gzip">
+			<fileset dir="./docs">
+				<include name="**/**" />
+				<exclude name="**/.svn/**" />
+			</fileset>
+		</tar>
 	</target>
 	
 </project>

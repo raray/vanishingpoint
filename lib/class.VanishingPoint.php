@@ -20,8 +20,8 @@
  * This class is NOT compatible with PHP 4.
  * 
  * The following is an example of using Vanishing Point. For the sake of demonstration, we have used 
- * the VP_JS Javascript Plugin for 
- * Vanishing Point ({@link http://www.net-perspective.com/downloads/VP_JS VP_JS Javascript Plugin })
+ * the VP_JS Javascript Plugin for Vanishing Point.
+ * 
  * <code>
  * <?php
  * //include requied classes
@@ -43,7 +43,7 @@
  * 
  * @link http://www.net-perspective.com/ Net Perspective Website
  * 
- * @version 1.0.0
+ * @version 0.1.0
  * @author Andrew Ellis <aellis@net-perspective.com>
  * @copyright Copyright (c) 2008, Net Perspective, LLC
  * @license http://www.opensource.org/licenses/mit-license.php MIT License 

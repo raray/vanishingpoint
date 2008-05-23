@@ -9,7 +9,7 @@ require_once('class.VP_Module.php');
  * @link http://www.net-perspective.com/ Net Perspective Website
  * @link http://csstidy.sourceforge.net/ CSS Minifier
  * 
- * @version 1.0.0
+ * @version 0.1.0
  * @author Andrew Ellis <aellis@net-perspective.com>
  * @copyright Copyright (c) 2008, Net Perspective, LLC
  * @license http://www.opensource.org/licenses/mit-license.php MIT License 
